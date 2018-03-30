@@ -5,7 +5,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
-<script src="/resources/js/jquery-ui.min.js" type="text/javascript"></script>
 </head>
 <body>
 

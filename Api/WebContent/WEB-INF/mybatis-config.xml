@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuation
+	PUBLIC "-//mybatis.org//DTD config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuation>
+	<typeAliases>
+		<package name="com.hanatour.api.common.domain"/>
+		<package name="com.hanatour.api.user.domain"/>
+		<package name="com.hanatour.api.login.dto"/>
+	</typeAliases>
+</configuation>
