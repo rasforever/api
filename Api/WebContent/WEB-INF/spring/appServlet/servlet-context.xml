@@ -26,13 +26,7 @@
 	</context:component-scan>
 
 	
-	
-	
-	<!-- <beans:bean id="authInterceptor" class="kosta.koggiri.login.interceptor.AuthInterceptor"></beans:bean>
-	
-	<beans:bean id="loginInterceptor" class="kosta.koggiri.login.interceptor.LoginInterceptor"></beans:bean>
-	 -->
-<!-- 	<interceptors>
+ 	<interceptors>
 		<interceptor>
 			<mapping path="/login/login_ck"/>
 			<beans:ref bean="loginInterceptor"/>
@@ -43,7 +37,14 @@
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
 		
-	</interceptors> -->
+	</interceptors> 
+	
+		
+	
+	<beans:bean id="authInterceptor" class="com.hanatour.api.login.interceptor.AuthInterceptor"></beans:bean>
+	
+	<beans:bean id="loginInterceptor" class="com.hanatour.api.login.interceptor.LoginInterceptor"></beans:bean>
+	 
 		
 	
 	

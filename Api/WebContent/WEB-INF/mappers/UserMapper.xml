@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hanatour.api.mapper.UserMapper">
+
+	<select id="view_doc_d" parameterType="String" resultType="DocumentVO">
+	<![CDATA[
+		SELECT 	d.doc_no AS doc_no
+			,	d.doc_ver AS doc_ver
+			,	d.doc_fun_id AS doc_func_id
+			,	d.no AS doc_num
+			,	d.doc_title AS doc_title
+			,	d.doc_class_cd AS doc_class_cd
+			,	c1.cd_nm1 as doc_class_nm
+			,	d.doc_event_cd AS doc_event_nm
+			,	c2.cd_nm1 AS doc_event_nm
+			,	d.doc_wrt AS doc_wrt
+			,	e.emp_nm AS doc_wrt_nm
+			,	d.dco_wrt_date Ad doc_wrt_date
+			,	d.doc_description AS doc_description
+			,	d.doc_content AS doc_content
+			,	dd.doc_r_cd AS doc_r_cd
+			,	dd.doc_par_no AS doc_par_no
+			,	dd.doc_d_name AS doc_d_name
+			,	dd.doc_d_seq AS doc_d_seq
+			,	dd.doc_d_dept AS doc_d_dept
+			,	dd.doc_d_hrank AS doc_d_hrank
+			,	dd.doc_d_essck AS doc_d_essck
+			,	dd.doc_d_maxl AS doc_d_maxl
+			,	dd.doc_d_content AS doc_d_content
+			,	dd.doc_d_note AS doc_d_note
+			,	dd.doc_ver AS doc_d_ver
+			,	dd.doc_d_wrt AS doc_d_wrt
+			,	dd.doc_d_wrt_date AS doc_d_wrt_date
+			,	d.doc_request AS doc_request
+			,	d.doc_response AS doc_response
+		FROM doc d
+		INNER JOIN doc_detail dd
+		ON d.doc_no = dd.doc.no
+		AND d.doc_no = 'FAD130323001'
+		
+		INNER JOIN c_code c1
+		ON d.doc_class = c1.cd1
+		AND c1.c_cd = '001'
+		
+		INNER JOIN c_code c2
+		ON d.doc_class = c2.cd1
+		AND c2.c_cd = '002'
+		
+		INNER JOIN emp e
+		ON d.doc_wrt = e.emp_id	
+	]]>
+	
+	</select>
+</mapper>

@@ -10,8 +10,40 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
 
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.mariadb.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mariadb://localhost/test"></property>
+		<property name="username" value="test"></property>
+		<property name="password" value="test"></property>
+	</bean>
 
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:/mybatis-config.xml"></property>
+		<property name="mapperLocations" value="classpath:mappers/*Mapper.xml"></property>
+	</bean>
+
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"
+		destroy-method="clearCache">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
+	</bean>
+	
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
 
 	<tx:annotation-driven />
+	
+	<context:component-scan base-package="com.hanatour.api.admin.persistence"></context:component-scan>
+	<context:component-scan base-package="com.hanatour.api.admin.service"></context:component-scan>
+	
+	<context:component-scan base-package="com.hanatour.api.login.persistence"></context:component-scan>
+	<context:component-scan base-package="com.hanatour.api.login.service"></context:component-scan>
+	
+	<context:component-scan base-package="com.hanatour.api.user.persistence"></context:component-scan>
+	<context:component-scan base-package="com.hanatour.api.user.service"></context:component-scan>
+	
 
 </beans>

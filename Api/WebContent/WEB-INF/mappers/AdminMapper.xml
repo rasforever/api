@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hanatour.api.mapper.AdminMapper">
+
+	<select id="emp_list" resultType="MemberVO">
+	<![CDATA[
+		SELECT 	emp_id 
+			,	emp_pw 
+			,	emp_nm 
+			,	round(emp_rank) as emp_rank
+			,	emp_admin_aut AS admin_aut
+		FROM emp
+	]]>	
+	</select>
+		
+	<select id="codelist" parameterType="String" resultType="CommonCodeVO">
+	<![CDATA[
+		SELECT 	cd1, cd_nm1
+		FROM c_code
+	   WHERE c_cd = #{c_cd}
+	]]>	
+	</select>
+	
+	<select id="code_sellist" resultType="CommonCodeVO">
+	<![CDATA[
+		SELECT 	cd1, cd_nm1
+		FROM c_code
+	   WHERE c_cd = '000'
+	]]>	
+	</select>
+	
+	
+</mapper>

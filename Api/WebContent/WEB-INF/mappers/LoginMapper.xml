@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hanatour.api.mapper.LoginMapper">
+
+	<select id="login" parameterType="HanainDTO" resultType="MemberVO">
+	<![CDATA[
+		SELECT 	emp_id AS emp_id
+			,	emp_nm AS emp_nm
+			,	emp_pw AS emp_pw
+			,	emp_rank AS emp_rank
+			,	emp_admin_aut AS admin_aut
+			,	last_con_date AS last_con_date
+		FROM emp
+	   WHERE emp_id = #{emp_id}
+		 AND emp_pw = #{emp_pw}
+	]]>	
+	</select>
+	
+	<insert id="join">
+	insert into emp(emp_id, emp_pw, emp_nm, emp_rank, emp_admin_aut, last_con_date) values
+	(#{emp_id}, #{emp_pw}, #{emp_nm}, 5, 'N', now())
+	</insert>
+	
+	<select id="id_ck" parameterType="String" resultType="String">
+	<![CDATA[
+		SELECT 	emp_id AS emp_id
+		FROM emp
+	   WHERE emp_id = #{emp_id}
+	]]>	
+	</select>
+	
+	<select id="pw_ck" parameterType="String" resultType="String">
+	<![CDATA[
+		SELECT 	emp_id AS emp_id
+		FROM emp
+	   WHERE emp_id = #{emp_id}
+	     AND emp_pw = #{emp_pw}
+	]]>	
+	</select>
+	
+	<update id="pwchg">
+	update emp_set emp_pw = #{emp_pw} where emp_id = #{emp_id}
+	</update>
+	
+</mapper>
