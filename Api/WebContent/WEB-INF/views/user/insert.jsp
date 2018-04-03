@@ -11,7 +11,7 @@
 
 <%@ include file="../include/user_header.jsp"%>
 
-<div>
+<div class="apl_main">
 	<div>
 		<table border=1>
 			<tr>
@@ -32,7 +32,7 @@
 			</tr>
 			<tr>
 				<td></td>
-				<td></td>
+				<td colspan="5"></td>
 			</tr>
 		</table>
 	</div>
@@ -40,12 +40,12 @@
 		<table border="1">
 			<thead>
 				<tr>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
+					<th>체크</th>
+					<th>NAME</th>
+					<th>필수</th>
+					<th>Maxlength</th>
+					<th>설명</th>
+					<th>비고</th>
 				</tr>
 				<tr>
 					<th colspan="6">REQUEST
@@ -59,12 +59,12 @@
 		<table>
 			<thead>
 				<tr>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
-					<th></th>
+					<th>체크</th>
+					<th>NAME</th>
+					<th>필수</th>
+					<th>Maxlength</th>
+					<th>설명</th>
+					<th>비고</th>
 				</tr>
 				<tr>
 					<th colspan="6">RESPONSE
@@ -104,8 +104,10 @@
 	</div>
 </div>
 <div class="apl_main_footer">
+	<%-- <c:if test="${memberVO.h_rank < ='3'}"> --%>
 	<button type="submit" id="api_modify" maxlength="12" class="btn btn-warning" style="text-align: center;">신규저장</button>
 	<button type="submit" id="api_cancel" maxlength="12" class="btn btn-danger" style="">취소</button>
+	<%-- </c:if> --%>
 </div>
 <script type="text/javascript">
 	$(document).ready(function () {
