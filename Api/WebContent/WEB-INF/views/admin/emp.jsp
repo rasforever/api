@@ -65,10 +65,8 @@
 		$('#emp_update').click(function() {
 			
 			var tr=$('#empTable tbody tr');
-			//var obj = [];
-			
+			var po = [];			
 			for (var i = 0; i < tr.length; i++){
-				var obj = {};
 				var ch_ck = $('#ch_ck',tr.eq(i)) 
 				var id = $('#emp_id',tr.eq(i)) 
 				var nm = $('#emp_nm',tr.eq(i)) 
@@ -76,23 +74,27 @@
 				var rank = $('#emp_rank',tr.eq(i)) 
 				var admin_aut = $('#admin_aut',tr.eq(i)) 
 				if(admin_aut.is(":checked" == true)){
-					obj.push({
-						emp_id : id.val(),
-						emp_nm : nm.val(),
-						emp_pw : pw.val(),
-						emp_rank : rank.val(),
-						admin_aut : admin_aut.val(),
-						last_con_date : ''
-					});
+					admin_aut.val("Y");
+				} else{
+					admin_aut.val("N");
 				}
+				if(ch_ck.is(":checked" == true)){
+					var voList = {};
+					voList.emp_id = id.val();
+					voList.emp_nm = nm.val();
+					voList.emp_pw = pw.val();
+					voList.emp_rank = rank.val();
+					voList.admin_aut = admin_aut.val();
+					po.push(voList);					
+				}				
 				
 			}
-			var vo = JSON.stringify(obj);
+			var vo = JSON.stringify(po);
 			$.ajax({
 				url : '/admin/emp_modity',
 				method : 'post',
-				contentType : 'application/json; charset=UTF-8',
-				data : vo,
+				contentType : 'application/x-www-form-urlencoded;charset=UTF-8',
+				data : {memberVO: vo},
 				dataType: 'json',
 				success : function() {
 					alert("성공");

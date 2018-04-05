@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hanatour.api.admin.service.AdminService;
 import com.hanatour.api.common.domain.CommonCodeVO;
@@ -54,10 +55,22 @@ public class AdminController {
 	//사원수정
 	@RequestMapping(value = "/emp_modify", method = RequestMethod.POST)
 	@ResponseBody
-	public void emp_modifyPOST(@RequestBody List<Map<String, MemberVO>> vo, HttpServletRequest request) throws Exception{
-		Map<String, Object> resultMap = new HashMap<>();
+	public Map<String, Object> emp_modifyPOST(@RequestBody Map<String, Object> pMap, HttpServletRequest request) throws Exception{
+		Map<String, Object> resultMap = pMap;
+		Map<String, Object> returntMap = new HashMap<>();
 		
-		ObjectMapper mapper = new ObjectMapper();
+		try {
+			
+			ObjectMapper mapper = new ObjectMapper();
+			List<Map<String,Object>> memberListVO = mapper.readValue(resultMap.get("memberVO").toString(), new TypeReference<List<Map<String, Object>>>(){});
+			service.emp_modify(memberListVO);
+			returntMap.put("result", true);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			returntMap.put("result", false);
+		}
+		return returntMap;
 	}
 	
 	//사원삭제

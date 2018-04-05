@@ -42,8 +42,8 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public void emp_modify(List<MemberVO> vo) throws Exception {
-
+	public void emp_modify(MemberVO vo) throws Exception {
+		session.update(namespace+ ".emp_update", vo);
 	}
 
 	@Override

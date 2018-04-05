@@ -30,6 +30,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	   WHERE c_cd = '000'
 	]]>	
 	</select>
-	
+	<update id="pwchg" parameterType="MemberVO">
+	<![CDATA[
+		update emp set emp_pw =#{} where emp_id = #{emp_id}
+		]]>	
+	</update>
 	
 </mapper>

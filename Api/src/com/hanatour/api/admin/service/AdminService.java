@@ -1,6 +1,7 @@
 package com.hanatour.api.admin.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.hanatour.api.common.domain.CommonCodeVO;
 import com.hanatour.api.common.domain.DocVO;
@@ -17,7 +18,7 @@ public interface AdminService {
 	//공통코드리스트
 	public List<CommonCodeVO> code_list(String c_cd) throws Exception;
 	//사원정보 수정
-	public void emp_modify(List<MemberVO> vo) throws Exception;
+	public void emp_modify(List<Map<String, Object>> vo) throws Exception;
 	//사원정보 삭제
 	public void emp_remove(List<MemberVO> vo) throws Exception;
 	//문서정보 삭제

@@ -17,7 +17,7 @@ public interface AdminDAO {
 		//공통코드리스트
 		public List<CommonCodeVO> code_list(String c_cd) throws Exception;
 		//사원정보 수정
-		public void emp_modify(List<MemberVO> vo) throws Exception;
+		public void emp_modify(MemberVO vo) throws Exception;
 		//사원정보 삭제
 		public void emp_remove(List<MemberVO> vo) throws Exception;
 		//문서정보 삭제
