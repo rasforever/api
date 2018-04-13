@@ -16,14 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hanatour.api.admin.service.AdminService;
 import com.hanatour.api.common.domain.CommonCodeVO;
-import com.hanatour.api.common.domain.DocVO;
-import com.hanatour.api.common.domain.MemberVO;
 
 @Controller
 @RequestMapping(value = "/admin")
