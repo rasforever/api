@@ -19,15 +19,19 @@ public interface AdminDAO {
 		//사원정보 수정
 		public void emp_modify(MemberVO vo) throws Exception;
 		//사원정보 삭제
-		public void emp_remove(List<MemberVO> vo) throws Exception;
+		public void emp_remove(MemberVO vo) throws Exception;
 		//문서정보 삭제
-		public void doc_modify(List<DocVO> vo) throws Exception;
+		public void doc_modify(DocVO vo) throws Exception;
 		//코드 sel
 		public List<CommonCodeVO> code_sellist() throws Exception;
+		//코드 확인
+		public Integer code_check(CommonCodeVO vo) throws Exception;
+		//코드정보 저장
+		public void code_save(CommonCodeVO vo) throws Exception;
 		//코드정보 수정
-		public void code_modify(List<CommonCodeVO> vo) throws Exception;
+		public void code_modify(CommonCodeVO vo) throws Exception;
 		//코드정보 삭제
-		public void code_remove(List<CommonCodeVO> vo) throws Exception;
+		public void code_remove(CommonCodeVO vo) throws Exception;
 
 
 }

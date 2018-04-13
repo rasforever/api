@@ -47,28 +47,39 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public void emp_remove(List<MemberVO> vo) throws Exception {
-
+	public void emp_remove(MemberVO vo) throws Exception {
+		session.delete(namespace+ ".emp_delete", vo);
 	}
 
 	@Override
-	public void doc_modify(List<DocVO> vo) throws Exception {
-
+	public void doc_modify(DocVO vo) throws Exception {
+		session.update(namespace+ ".doc_update", vo);
+	}
+	
+	@Override
+	public Integer code_check(CommonCodeVO vo) throws Exception {
+		return session.selectOne(namespace + ".code_check", vo);
 	}
 
 	@Override
 	public List<CommonCodeVO> code_sellist() throws Exception {
 		return session.selectList(namespace + ".code_sellist");
 	}
-
+	
 	@Override
-	public void code_modify(List<CommonCodeVO> vo) throws Exception {
+	public void code_save(CommonCodeVO vo) throws Exception {
+		session.insert(namespace+ ".code_update", vo);
 
+	}
+	
+	@Override
+	public void code_modify(CommonCodeVO vo) throws Exception {
+		session.update(namespace+ ".code_update", vo);
 	}
 
 	@Override
-	public void code_remove(List<CommonCodeVO> vo) throws Exception {
-
+	public void code_remove(CommonCodeVO vo) throws Exception {
+		session.delete(namespace+ ".code_delete", vo);
 	}
 
 }

@@ -4,8 +4,8 @@ public class DocVO {
 
 		private String doc_no;
 		private String doc_title;
-		private int doc_rank_cd;
-		private String doc_ver;
+		private String doc_rank_cd;
+		private int doc_ver;
 		private String doc_func_id;
 		private int doc_num;
 		private String doc_class_cd;
@@ -22,7 +22,7 @@ public class DocVO {
 		
 		public DocVO() {}
 
-		public DocVO(String doc_no, String doc_title, int doc_rank_cd, String doc_ver, String doc_func_id, int doc_num,
+		public DocVO(String doc_no, String doc_title, String doc_rank_cd, int doc_ver, String doc_func_id, int doc_num,
 				String doc_class_cd, String doc_class_nm, String doc_event_cd, String doc_event_nm, String doc_wrt,
 				String doc_wrt_nm, String doc_wrt_date, String doc_description, String doc_content, String doc_request,
 				String doc_response) {
@@ -62,19 +62,19 @@ public class DocVO {
 			this.doc_title = doc_title;
 		}
 
-		public int getDoc_rank_cd() {
+		public String getDoc_rank_cd() {
 			return doc_rank_cd;
 		}
 
-		public void setDoc_rank_cd(int doc_rank_cd) {
+		public void setDoc_rank_cd(String doc_rank_cd) {
 			this.doc_rank_cd = doc_rank_cd;
 		}
 
-		public String getDoc_ver() {
+		public int getDoc_ver() {
 			return doc_ver;
 		}
 
-		public void setDoc_ver(String doc_ver) {
+		public void setDoc_ver(int doc_ver) {
 			this.doc_ver = doc_ver;
 		}
 

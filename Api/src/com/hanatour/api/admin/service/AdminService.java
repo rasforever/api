@@ -20,14 +20,14 @@ public interface AdminService {
 	//사원정보 수정
 	public void emp_modify(List<Map<String, Object>> vo) throws Exception;
 	//사원정보 삭제
-	public void emp_remove(List<MemberVO> vo) throws Exception;
+	public void emp_remove(List<Map<String, Object>> vo) throws Exception;
 	//문서정보 삭제
-	public void doc_modify(List<DocVO> vo) throws Exception;
+	public void doc_modify(List<Map<String, Object>> vo) throws Exception;
 	//코드 sel
 	public List<CommonCodeVO> code_sellist() throws Exception;
 	//코드정보 수정
-	public void code_modify(List<CommonCodeVO> vo) throws Exception;
+	public void code_modify(List<Map<String, Object>> vo) throws Exception;
 	//코드정보 삭제
-	public void code_remove(List<CommonCodeVO> vo) throws Exception;
+	public void code_remove(List<Map<String, Object>> vo) throws Exception;
 
 }

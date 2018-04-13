@@ -30,10 +30,64 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	   WHERE c_cd = '000'
 	]]>	
 	</select>
-	<update id="pwchg" parameterType="MemberVO">
+	
+	<update id="emp_update" parameterType="MemberVO">
 	<![CDATA[
-		update emp set emp_pw =#{} where emp_id = #{emp_id}
-		]]>	
+		update emp set emp_pw = #{emp_pw}, emp_rank = #{emp_rank}, emp_admin_aut = #{admin_aut} where emp_id = #{emp_id]
+	]]>
+	</update>
+	
+	<select id="code_check" resultType="int">
+	<![CDATA[
+		select count(cd1)
+		  from c_code
+		 where c_cd = #{c_cd}
+		   and cd1 = #{cd1}
+	]]>
+	</select>
+	
+	<insert id="code_save" parameterType="CommonCodeVO">
+	<![CDATA[
+		insert c_code (c_cd, c_cd_nm)
+		select #{c_cd}
+		     , cd_nm1
+		     , #{cd1}
+		     , #{cd_nm1}
+		  from c_code
+		 where c_cd = '000'
+		   and cd1 = #{c_cd}
+	]]>
+	</insert>
+	
+	<update id="code_update" parameterType="CommonCodeVO">
+	<![CDATA[
+		update c_code set cd1 = #{cd1}, cd_nm1 = #{cd_nm1} where c_cd = #{c_cd] and cd1 = #{old_cd1}
+	]]>
+	</update>
+	
+	<delete id="code_delete" parameterType="CommonCodeVO">
+	<![CDATA[
+		delete from c_code where c_cd = #{c_cd} and cd1 = #{cd1}
+	]]>
+	</delete>
+	
+	<select id="doc_list" resultType="DocVO">
+	<![CDATA[
+		select doc_no
+		     , doc_title
+		     , doc_rank_cd 
+		     , cd_nm1
+		  from doc d
+		  Inner join c_code c
+		  on c,c_cd = '003'
+		  and c.cd1 = d.doc_ver
+	]]>
+	</select>
+	
+	<update id="code_update" parameterType="CommonCodeVO">
+	<![CDATA[
+		update doc set doc_rank_cd = #{doc_rank_cd} where doc_no = #{doc_no]
+	]]>
 	</update>
 	
 </mapper>

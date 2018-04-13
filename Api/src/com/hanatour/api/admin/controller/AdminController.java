@@ -9,7 +9,6 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.eclipse.core.internal.jobs.ObjectMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -40,7 +39,6 @@ public class AdminController {
 		
 		model.addAttribute("nlist", service.Ndoc_list());
 		model.addAttribute("emp_nm", name);
-		System.out.println("너의 이름은? " + name);
 		
 		return "/admin/main";
 	}
@@ -75,25 +73,53 @@ public class AdminController {
 	
 	//사원삭제
 	@RequestMapping(value="emp_remove", method= RequestMethod.POST)
-	public String emp_removePOST(List<MemberVO> vo, RedirectAttributes rttr) throws Exception{
+	@ResponseBody
+	public Map<String, Object> emp_removePOST(@RequestBody Map<String, Object> pMap, HttpServletRequest request) throws Exception{
+		Map<String, Object> resultMap = pMap;
+		Map<String, Object> returntMap = new HashMap<>();
 		
-		service.emp_remove(vo);
-		return "redirect:/admin/main";
+		try {
+			
+			ObjectMapper mapper = new ObjectMapper();
+			List<Map<String,Object>> memberListVO = mapper.readValue(resultMap.get("memberVO").toString(), new TypeReference<List<Map<String, Object>>>(){});
+			service.emp_remove(memberListVO);
+			returntMap.put("result", true);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			returntMap.put("result", false);
+		}
+		return returntMap;
 	}
 	
 	//문서관리페이지
 	@RequestMapping(value = "/doc")
 	public void doclist(HttpSession session, Model model) throws Exception{
 		model.addAttribute("doclist", service.doc_list());
+		model.addAttribute("code_list", service.code_list("003"));
 	}
 	
 	//문서수정
 	@RequestMapping(value="/doc_modify", method= RequestMethod.POST)
-	public String doc_modifyPOST(List<DocVO> vo, RedirectAttributes rttr) throws Exception{
+	@ResponseBody
+	public Map<String, Object> doc_modifyPOST(@RequestBody Map<String, Object> pMap, HttpServletRequest request) throws Exception{
+		Map<String, Object> resultMap = pMap;
+		Map<String, Object> returntMap = new HashMap<>();
 		
-		service.doc_modify(vo);
-		return "redirect:/admin/doc";
+		try {
+			
+			ObjectMapper mapper = new ObjectMapper();
+			List<Map<String,Object>> DocListVO = mapper.readValue(resultMap.get("docVO").toString(), new TypeReference<List<Map<String, Object>>>(){});
+			service.doc_modify(DocListVO);
+			returntMap.put("result", true);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			returntMap.put("result", false);
+		}
+		return returntMap;
 	}
+
 	
 	//코드관리페이지
 	@RequestMapping(value="/code", method = RequestMethod.GET)
@@ -105,21 +131,51 @@ public class AdminController {
 		
 		model.addAttribute("code_sellist", service.code_sellist());
 		model.addAttribute("code_list", service.code_list(vo.getC_cd()));
+		
+		model.addAttribute("C_Code", vo.getC_cd());
+		
 	}
 	
 	//코드변경
 	@RequestMapping(value = "/code_moidfy", method = RequestMethod.POST)
-	public String code_modifyPOST(List<CommonCodeVO> vo, RedirectAttributes rttr) throws Exception{
-	
-		service.code_modify(vo);
-		return "redirect:/admin/code";
+	@ResponseBody
+	public Map<String, Object> code_modifyPOST(@RequestBody Map<String, Object> pMap, HttpServletRequest request) throws Exception{
+		Map<String, Object> resultMap = pMap;
+		Map<String, Object> returntMap = new HashMap<>();
+		
+		try {
+			
+			ObjectMapper mapper = new ObjectMapper();
+			List<Map<String,Object>> CodeListVO = mapper.readValue(resultMap.get("commonCodeVO").toString(), new TypeReference<List<Map<String, Object>>>(){});
+			service.code_modify(CodeListVO);
+			returntMap.put("result", true);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			returntMap.put("result", false);
+		}
+		return returntMap;
 	}
 	
 	//코드삭제
 	@RequestMapping(value = "/code_remove", method = RequestMethod.POST)
-	public String code_removePOST(List<CommonCodeVO>vo, RedirectAttributes rttr) throws Exception{
-		service.code_remove(vo);
-		return "redirect:/admin/code";
+	@ResponseBody
+	public Map<String, Object> code_removePOST(@RequestBody Map<String, Object> pMap, HttpServletRequest request) throws Exception{
+		Map<String, Object> resultMap = pMap;
+		Map<String, Object> returntMap = new HashMap<>();
+		
+		try {
+			
+			ObjectMapper mapper = new ObjectMapper();
+			List<Map<String,Object>> CodeListVO = mapper.readValue(resultMap.get("commonCodeVO").toString(), new TypeReference<List<Map<String, Object>>>(){});
+			service.code_remove(CodeListVO);
+			returntMap.put("result", true);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			returntMap.put("result", false);
+		}
+		return returntMap;
 	}
 	
 
